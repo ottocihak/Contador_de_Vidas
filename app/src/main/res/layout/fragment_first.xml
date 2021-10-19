@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageButton
+        android:id="@+id/arrow2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/material_on_surface_disabled"
+        android:src="@drawable/ic_baseline_arrow_downward_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <ImageButton
+        android:id="@+id/arrow1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/material_on_surface_disabled"
+        android:src="@drawable/ic_baseline_arrow_upward_24"
+        app:layout_constraintBottom_toTopOf="@+id/arrow2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/getLife1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/material_on_surface_disabled"
+        android:src="@drawable/ic_baseline_favorite_24"
+        android:tint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@+id/arrow1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getPoison1" />
+
+    <ImageButton
+        android:id="@+id/getLife2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/material_on_surface_disabled"
+        android:src="@drawable/ic_baseline_favorite_24"
+        android:tint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@+id/getPoison2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrow2" />
+
+    <ImageButton
+        android:id="@+id/takeLife1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/material_on_surface_disabled"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:tint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@+id/arrow1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/takePoison1" />
+
+    <ImageButton
+        android:id="@+id/takeLife2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/material_on_surface_disabled"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:tint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@+id/takePoison2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrow2" />
+
+    <Button
+        android:id="@+id/getPoison1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:fontFamily="cursive"
+        android:text="P+"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/takePoison1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:fontFamily="cursive"
+        android:text="P-"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/getPoison2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:fontFamily="cursive"
+        android:text="P+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/takePoison2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:fontFamily="cursive"
+        android:text="P-"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/displey1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:text="20/0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/arrow1"
+        app:layout_constraintEnd_toStartOf="@+id/takeLife1"
+        app:layout_constraintStart_toEndOf="@+id/getLife1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/displey2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:text="20/0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/takeLife2"
+        app:layout_constraintStart_toEndOf="@+id/getLife2"
+        app:layout_constraintTop_toBottomOf="@+id/arrow2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
