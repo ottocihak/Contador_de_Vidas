@@ -46,6 +46,16 @@ public class FirstFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        
+        if (savedInstanceState!=null){
+            life1= (int) savedInstanceState.get("life1");
+            life2= (int) savedInstanceState.get("life2");
+            poison1= (int) savedInstanceState.get("poison1");
+            poison2= (int) savedInstanceState.get("poison2");
+        } else {
+            life1=life2=20;
+            poison1=poison2=0;
+        }
 
         View view = inflater.inflate(R.layout.fragment_first, container, false);
 
@@ -67,6 +77,8 @@ public class FirstFragment extends Fragment {
         displey2 = (TextView) view.findViewById(R.id.displey2);
         textViewP1 = (TextView) view.findViewById(R.id.textViewP1);
         textViewP2 = (TextView) view.findViewById(R.id.textViewP2);
+        
+        updateView();
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -120,13 +132,14 @@ public class FirstFragment extends Fragment {
         takePoison1.setOnClickListener(listener);
         takePoison2.setOnClickListener(listener);
 
-        reset();
 
         return view;
 
     }
 
     private void updateView() {
+        if (poison1<0) poison1=0;
+        if (poison2<0) poison2=0;
         displey1.setText(String.format("%d/%d",life1,poison1));
         displey2.setText(String.format("%d/%d",life2,poison2));
         if (life1==0||poison1==10){
@@ -157,6 +170,15 @@ public class FirstFragment extends Fragment {
 //            }
 //        });
 //    }
+    
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt("life1",life1);
+        outState.putInt("life2",life2);
+        outState.putInt("poison1",poison1);
+        outState.putInt("poison2",poison2);
+        super.onSaveInstanceState(outState);
+    }
 
     private void endGameTransition() {
         NavHostFragment.findNavController(FirstFragment.this)
@@ -167,7 +189,7 @@ public class FirstFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        
     }
 
 }
