@@ -1,25 +1,28 @@
 package com.example.contadordevidas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.contadordevidas.databinding.FragmentFirstBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-
-//    private Button buttonFirst;
-//    private Guideline guideline2;
-
     private ImageButton arrow2;
     private ImageButton arrow1;
     private ImageButton getLife1;
@@ -32,8 +35,7 @@ public class FirstFragment extends Fragment {
     private Button takePoison2;
     private TextView displey1;
     private TextView displey2;
-    private TextView textViewP1;
-    private TextView textViewP2;
+    private View view;
 
     int life1;
     int life2;
@@ -57,11 +59,8 @@ public class FirstFragment extends Fragment {
             poison1=poison2=0;
         }
 
-        View view = inflater.inflate(R.layout.fragment_first, container, false);
+        view = inflater.inflate(R.layout.fragment_first, container, false);
 
-
-//        buttonFirst = (Button) view.findViewById(R.id.button_first);
-//        guideline2 = (Guideline) view.findViewById(R.id.guideline2);
 
         arrow2 = (ImageButton) view.findViewById(R.id.arrow2);
         arrow1 = (ImageButton) view.findViewById(R.id.arrow1);
@@ -75,8 +74,7 @@ public class FirstFragment extends Fragment {
         takePoison2 = (Button) view.findViewById(R.id.takePoison2);
         displey1 = (TextView) view.findViewById(R.id.displey1);
         displey2 = (TextView) view.findViewById(R.id.displey2);
-        textViewP1 = (TextView) view.findViewById(R.id.textViewP1);
-        textViewP2 = (TextView) view.findViewById(R.id.textViewP2);
+
         
         updateView();
 
@@ -143,13 +141,9 @@ public class FirstFragment extends Fragment {
         displey1.setText(String.format("%d/%d",life1,poison1));
         displey2.setText(String.format("%d/%d",life2,poison2));
         if (life1==0||poison1==10){
-            textViewP1.setText("You Lose");
-            textViewP2.setText("You Win");
             endGameTransition();
         }
         if (life2==0||poison2==10){
-            textViewP1.setText("You Win");
-            textViewP2.setText("You Lose");
             endGameTransition();
         }
     }
@@ -157,9 +151,34 @@ public class FirstFragment extends Fragment {
     private void reset() {
         life1=life2=20;
         poison1=poison2=0;
+        updateView();
     }
 
-//    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id==R.id.action_reset){
+            reset();
+            Snackbar.make(view, "New game", Snackbar.LENGTH_INDEFINITE).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    //    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
 //
 //        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +200,7 @@ public class FirstFragment extends Fragment {
     }
 
     private void endGameTransition() {
+
         NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
     }
